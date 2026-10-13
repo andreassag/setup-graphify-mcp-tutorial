@@ -1,0 +1,31 @@
+services:
+  graphify-build:
+    image: andreassag/graphify:latest
+    profiles: ["cli", "build"]
+    user: "${UID:-1000}:${GID:-1000}"
+    volumes:
+      - ./:/workspace
+    working_dir: /workspace
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+    entrypoint: ["graphify"]
+    command: ["."] # Use [".", "--code-only"] to only analyze code files, i.e. without a GEMINI_API_KEY
+
+  graphify-mcp:
+    image: andreassag/graphify:latest
+    profiles: ["mcp"]
+    user: "${UID:-1000}:${GID:-1000}"
+    stdin_open: true
+    volumes:
+      - ./:/workspace
+    working_dir: /workspace
+    command: ["graphify-out/graph.json"]
+
+  graphify-ui:
+    image: python:3.14-slim
+    profiles: ["ui"]
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./graphify-out:/data:ro
+    command: ["python", "-m", "http.server", "8080", "-d", "/data"]

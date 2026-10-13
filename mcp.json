@@ -1,0 +1,17 @@
+{
+    "mcpServers": {
+        "graphify": {
+            "command": "docker",
+            "args": [
+                "compose",
+                "-f",
+                "~/.mcp/graphify/docker-compose.yml",
+                "run",
+                "--rm",
+                "-T",
+                "-e",
+                "graphify-mcp"
+            ]
+        }
+    }
+}
