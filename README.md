@@ -16,9 +16,7 @@ Store the Docker setup in a workspace-specific location (e.g., `.mcp/graphify` i
 ```text
 ~/.mcp/graphify/
 ├── Dockerfile          # Required only when building locally
-├── docker-bake.hcl     # Multi-arch / version build configuration
 ├── docker-compose.yml  # Service definitions
-├── .env.example        # Environment variable template
 └── .env                # Local environment configuration (optional)
 ```
 
@@ -30,9 +28,7 @@ Store the Docker setup in a workspace-specific location (e.g., `.mcp/graphify` i
 ```text
 C:\Users\<username>\.mcp\graphify\
 ├── Dockerfile          # Required only when building locally
-├── docker-bake.hcl     # Multi-arch / version build configuration
 ├── docker-compose.yml  # Service definitions
-├── .env.example        # Environment variable template
 └── .env                # Local environment configuration (optional)
 ```
 
