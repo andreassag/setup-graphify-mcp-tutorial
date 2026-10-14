@@ -6,9 +6,17 @@ on:
       - main
     tags:
       - 'v*'
+    paths:
+      - 'Dockerfile'
+      - 'docker-bake.hcl'
+      - '.github/workflows/docker-publish.yml'
   pull_request:
     branches:
       - main
+    paths:
+      - 'Dockerfile'
+      - 'docker-bake.hcl'
+      - '.github/workflows/docker-publish.yml'
   workflow_dispatch:
     inputs:
       python_version:
