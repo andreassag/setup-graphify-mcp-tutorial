@@ -201,12 +201,14 @@ Most MCP-compatible clients use an `mcpServers` object in their configuration fi
             "command": "docker",
             "args": [
                 "compose",
+                "--project-directory",
+                ".",
                 "-f",
                 "/home/<user>/.mcp/graphify/docker-compose.yml",
                 "run",
                 "--rm",
+                "-i",
                 "-T",
-                "-e",
                 "graphify-mcp"
             ]
         }
@@ -214,6 +216,8 @@ Most MCP-compatible clients use an `mcpServers` object in their configuration fi
 }
 ```
 
+> **Path Note**: Replace `/home/<user>/` with your actual absolute home path (e.g., `/Users/<username>/` on macOS, `/home/<username>/` on Linux) as MCP clients do not expand `~`.
+>
 > **Windows 11 Note**: On Windows 11, replace the compose file path with `C:/Users/<username>/.mcp/graphify/docker-compose.yml` (using forward slashes or escaped backslashes `\\`).
 
 ---
@@ -228,10 +232,10 @@ Instead of repeating the JSON block for each tool, add the base `graphify` entry
 | | Workspace | `.agents/mcp_config.json` (repository root) |
 | **Claude Desktop** | macOS | `~/Library/Application Support/Claude/claude_desktop_config.json` |
 | | Windows 11 | `%APPDATA%\Claude\claude_desktop_config.json` |
-| **Claude Code** | CLI | `claude mcp add graphify -- docker compose -f /home/<user>/.mcp/graphify/docker-compose.yml run --rm -T -e graphify-mcp` |
+| **Claude Code** | CLI | `claude mcp add graphify -- docker compose --project-directory . -f /home/<user>/.mcp/graphify/docker-compose.yml run --rm -i -T graphify-mcp` |
 | **OpenAI Codex** | Global | `~/.codex/config.json` |
 | | Workspace | `.codex/config.json` (repository root) |
-| | CLI | `codex mcp add graphify -- docker compose -f /home/<user>/.mcp/graphify/docker-compose.yml run --rm -T -e graphify-mcp` |
+| | CLI | `codex mcp add graphify -- docker compose --project-directory . -f /home/<user>/.mcp/graphify/docker-compose.yml run --rm -i -T graphify-mcp` |
 
 > **Tip**: In **Antigravity**, you can verify active MCP tools (`query_graph`, `get_node`, `shortest_path`) under **Additional Options (...) > MCP Servers**.
 

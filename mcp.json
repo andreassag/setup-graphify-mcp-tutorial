@@ -4,12 +4,14 @@
             "command": "docker",
             "args": [
                 "compose",
+                "--project-directory",
+                ".",
                 "-f",
-                "~/.mcp/graphify/docker-compose.yml",
+                "/home/<user>/.mcp/graphify/docker-compose.yml",
                 "run",
                 "--rm",
+                "-i",
                 "-T",
-                "-e",
                 "graphify-mcp"
             ]
         }
